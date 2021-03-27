@@ -114,5 +114,7 @@ WHU-汉姆-阳光体育代跑图形界面工具-环境打包-即开即用
 
 ## License
 
-本项目核心参考于https://github.com/S-Ex1t/SunnyRunningPy，项目遵守GPL3.0免费开源协议，请勿利用信息差倒卖
+本项目核心参考于https://github.com/S-Ex1t/SunnyRunningPy
+
+项目遵守GPL3.0免费开源协议，请勿利用信息差倒卖
 
