@@ -9,7 +9,9 @@ WHU-汉姆-阳光体育代跑图形界面工具-环境打包-即开即用
 
 1. 首先，需要您需要获取您的IMEI码，这是您的身份识别码
 
-**For Android:** 您可以使用Packet Capture或者HttpCanary(黄鸟)进行抓包，安装好app后，请根据app提示安装证书,在进行抓包前请确认已经关闭阳光体育App.以HttpCanary(黄鸟)为例：
+**For Android:** 您可以使用Packet Capture或者HttpCanary(黄鸟)进行抓包，安装好app后，请根据app提示安装证书,在进行抓包前请确认已经关闭阳光体育App.   
+
+以HttpCanary(黄鸟)为例：
 
 ​		1.1打开HttpCanary, 进入设置->目标应用->选择阳光体育服务平台(com.aipao.hanmoveschool)
 
@@ -29,7 +31,7 @@ WHU-汉姆-阳光体育代跑图形界面工具-环境打包-即开即用
 
 ​	
 
-2. 为使用FuckHamSports GUI程序，您需要下载jre/jdk 14或者更高版本。这是java程序执行所依赖且唯一依赖的组件。支持Windows/Linux/MacOS等PC操作系统
+2. 为使用FuckHamSports GUI程序，您需要下载jre/jdk 14或者更高版本。这是本java程序执行所依赖且唯一依赖的组件。支持Windows/Linux/MacOS等PC操作系统
 
    jre下载地址：https://www.java.com/en/download/manual.jsp
 
@@ -106,6 +108,11 @@ WHU-汉姆-阳光体育代跑图形界面工具-环境打包-即开即用
 - `AboutFrame.java:` 其他信息界面
 - `GUI.java:`程序主入口点，绘制一个`MainFrame`
 
+### 编译
+
+项目使用jdk14进行打包，为保证编译通过，请使用jdk14或者更高版本
+
 ## License
 
-本项目核心参考于https://github.com/S-Ex1t/SunnyRunningPy，项目遵守GPL3.0免费开源协议
+本项目核心参考于https://github.com/S-Ex1t/SunnyRunningPy，项目遵守GPL3.0免费开源协议，请勿利用信息差倒卖
+
