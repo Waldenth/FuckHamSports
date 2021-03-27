@@ -485,11 +485,6 @@ public class RunFuck {
         System.out.println("\n"+table);
         System.out.println("\n"+encrypt("123478"));
 
-
-        //run("b116da51b84d47ee8194216f941de991","2.40");
-
-        String res=login("b116da51b84d47ee8194216f941de991","2.40");
-        System.out.println(res);
         //String timespan = String.valueOf(new Date().getTime());
         //System.out.println(timespan);
         //System.out.println(getMD5("123"));

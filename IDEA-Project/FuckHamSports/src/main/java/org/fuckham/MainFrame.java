@@ -184,13 +184,16 @@ public class MainFrame extends JFrame {
                         +"Approximate steps:"+stepField.getText(),"确认",JOptionPane.YES_NO_OPTION);
                 //System.out.println(confirmed);
                 if(confirmed==0){
-                    WorkingFrame workingFrame= new WorkingFrame(imeiCodeFileld.getText(),versionComboBox.getSelectedItem().toString(),timeField.getText(),stepField.getText());
-                    workingFrame.setVisible(true);
+                    if(imeiCodeFileld.getText().length()!=32){
+                        JOptionPane.showMessageDialog(null, "IMEI码长度应为32", "错误",JOptionPane.ERROR_MESSAGE);
+                    }else {
+                        WorkingFrame workingFrame = new WorkingFrame(imeiCodeFileld.getText(), versionComboBox.getSelectedItem().toString(), timeField.getText(), stepField.getText());
+                        workingFrame.setVisible(true);
+                    }
                 }
             }
         });
-
-
+        
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
