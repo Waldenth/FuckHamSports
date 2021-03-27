@@ -1,5 +1,5 @@
 # FuckHamSports
-![](https://img.shields.io/badge/license-GPL3.0-blue)  ![](https://img.shields.io/badge/PRs-welcome-green)  ![](https://img.shields.io/badge/java-jdk14%20or%20later-orange)![](https://img.shields.io/badge/issue-welcome-red)
+![](https://img.shields.io/badge/license-GPL3.0-blue)  ![](https://img.shields.io/badge/PRs-welcome-green)  ![](https://img.shields.io/badge/java-jdk14%20or%20later-orange)![](https://img.shields.io/badge/issue-welcome-red)![](https://img.shields.io/badge/release-0.1.0-brightgreen)
 
 WHU-汉姆-阳光体育代跑图形界面工具-环境打包-即开即用
 
@@ -13,15 +13,15 @@ WHU-汉姆-阳光体育代跑图形界面工具-环境打包-即开即用
 
 ​		1.1打开HttpCanary, 进入设置->目标应用->选择阳光体育服务平台(com.aipao.hanmoveschool)
 
-<img src="assets/Screenshot_20210327-101932_HttpCanary.jpg" alt="Screenshot_20210327-101932_HttpCanary" style="zoom: 20%;" /><img src="assets/Screenshot_20210327-102259_HttpCanary.jpg" alt="Screenshot_20210327-102259_HttpCanary" style="zoom:20%;" /><img src="assets/Screenshot_20210327-102305_HttpCanary.jpg" alt="Screenshot_20210327-102305_HttpCanary" style="zoom:20%;" />
+![image-20210327112612202](assets/image-20210327112612202.png)
 
 ​		1.2 回退到主界面，点击右下角纸飞机按钮，开始抓包
 
-<img src="assets/Screenshot_20210327-102823_HttpCanary.jpg" alt="Screenshot_20210327-102823_HttpCanary" style="zoom:20%;" /><img src="assets/Screenshot_20210327-102849.jpg" alt="Screenshot_20210327-102849" style="zoom:25%;" />
+![image-20210327112634998](assets/image-20210327112634998.png)
 
 ​		1.3 关闭跑步App，返回HttpCanary，寻找带有`%7Btoken%7D`的请求接口，打开详情，找到字段`IMEIcode=.....`
 
-<img src="assets/Screenshot_20210327-102931_HttpCanary.jpg" alt="Screenshot_20210327-102931_HttpCanary" style="zoom:20%;" /><img src="assets/Screenshot_20210327-102909_HttpCanary.jpg" alt="Screenshot_20210327-102909_HttpCanary" style="zoom:20%;" />
+![image-20210327112708725](assets/image-20210327112708725.png)
 
 ​		1.4 复制IMEIcode字段, （去掉前缀`IMEIcode=`）
 
