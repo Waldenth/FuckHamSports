@@ -1,0 +1,62 @@
+JFDML JFormDesigner: "7.0.1.0.272" Java: "11.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panel1::l:::x}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
+		} ) {
+			name: "this"
+			"title": "About"
+			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/ico.jpg" )
+			"defaultCloseOperation": 2
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {par t {seq {space :p:46:p, comp label3:::p::p, space ::22:x, comp label2:::p:233:p}, seq {space :p:23:p, comp label1:::p::p, space :::x, comp label7:::p::p}}, space :p:37:p}, seq t {space :0:0:x, par l {comp label4:::p:274:p, seq l {space :p:12:p, par t {comp label5:::p:239:p, comp label6:::p:233:p}}}, space :p:53:p}}"
+				"$verticalGroup": "par l {seq l {par l {seq l {space :p:55:p, comp label3:::p::p, space ::22:x}, seq t {space :::p, comp label2:::p:32:p, space :p:30:p}}, comp label4:::p:60:p, space :::p, comp label5:::p:32:p, space :p:26:p, comp label6:::p:32:p, space ::28:x, par l {comp label1:::p::p, comp label7:::p::p}, space :p:22:p}}"
+			} ) {
+				name: "panel1"
+				"background": sfield java.awt.Color darkGray
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/github.png" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "https://github.com/Waldenth"
+					"foreground": &Color0 new java.awt.Color( 255, 255, 255, 255 )
+					"font": &Font0 new java.awt.Font( "Microsoft YaHei UI", 0, 16 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "<html>参考项目:/S-Ex1t/SunnyRunningPy<br>感谢@S-Ex1t的逆向工作提供的思路</html>"
+					"foreground": #Color0
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "本项目遵守GPL3.0协议-完全免费"
+					"foreground": #Color0
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "赏包辣条 Ciallo～(∠・ω< )⌒☆"
+					"foreground": #Color0
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label7"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/alipay.jpg" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/wechatpay.png" )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 390, 485 )
+		} )
+	}
+}

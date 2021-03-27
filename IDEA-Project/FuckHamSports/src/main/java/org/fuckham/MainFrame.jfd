@@ -1,0 +1,94 @@
+JFDML JFormDesigner: "7.0.1.0.272" Java: "11.0.8" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panel1::l:::x}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
+		} ) {
+			name: "this"
+			"title": "FuckHam"
+			"defaultCloseOperation": 3
+			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/ico.jpg" )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {par l {seq l {space :p:214:p, comp titleLabel:::p:138:p}, seq l {space :p:56:p, par l {comp imeiCodeTip::l:p:139:p, comp imeiCodeFileld:::p:228:p, par t:l::p {comp versionComboBox::l::139:x, comp versionTip::l::139:x}}, space ::111:x, par l {comp timeField:::p:129:p, comp timeTip:::p:139:p, comp stepTip:::p:139:p, comp stepField:::p:129:p}}, seq l {space :p:235:p, comp startButton:::p:88:p}}, space :p:44:p}}"
+				"$verticalGroup": "par l {seq l {space :p:24:p, comp titleLabel:::p:77:p, space u:::p, par b {comp imeiCodeTip::b:p:25:p, comp timeTip::b:p:25:p}, space u:::p, par b {comp imeiCodeFileld::b:p::p, comp timeField::b:p::p}, par l {seq {space s:::p, comp versionTip:::p:25:p}, seq l {space :p:26:p, comp stepTip:::p:25:p}}, space s:::p, par l {comp versionComboBox:::p::p, comp stepField:::p::p}, space ::40:x, comp startButton:::p:39:p, space :p:36:p}}"
+			} ) {
+				name: "panel1"
+				"background": new java.awt.Color( 102, 102, 102, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "titleLabel"
+					"text": "   FuckHam"
+					"font": new java.awt.Font( "Microsoft YaHei UI", 1, 22 )
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "imeiCodeTip"
+					"text": "请输入IMEI码"
+					"foreground": &Color0 new java.awt.Color( 255, 255, 255, 255 )
+					"font": &Font0 new java.awt.Font( "Microsoft YaHei UI", 0, 16 )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "imeiCodeFileld"
+					"font": &Font1 new java.awt.Font( "Microsoft YaHei UI", 0, 16 )
+					"foreground": sfield java.awt.Color black
+					"background": sfield java.awt.Color white
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "versionTip"
+					"text": "选择版本"
+					"foreground": #Color0
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "versionComboBox"
+					"background": sfield java.awt.Color darkGray
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"font": new java.awt.Font( "Microsoft YaHei UI", 0, 14 )
+					"editable": true
+					"model": new javax.swing.DefaultComboBoxModel {
+						selectedItem: "2.40"
+						addElement( "2.40" )
+					}
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "startButton"
+					"text": "Start"
+					"font": new java.awt.Font( "Microsoft YaHei UI", 0, 16 )
+					"background": sfield java.awt.Color darkGray
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "timeTip"
+					"text": "请输入跑步时间(s)"
+					"foreground": #Color0
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "timeField"
+					"font": #Font1
+					"foreground": sfield java.awt.Color white
+					"background": sfield java.awt.Color darkGray
+					"text": "600"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "stepTip"
+					"text": "请输入大致步数"
+					"foreground": #Color0
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "stepField"
+					"font": #Font1
+					"foreground": sfield java.awt.Color white
+					"background": sfield java.awt.Color darkGray
+					"text": "1500"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 580, 430 )
+		} )
+	}
+}
