@@ -4,7 +4,7 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp panel1::l:::x}"
+			"$horizontalGroup": "par l {seq l {comp panel1:::p::p, space :0:0:x}}"
 			"$verticalGroup": "par l {comp panel1::l:::x}"
 		} ) {
 			name: "this"
@@ -12,8 +12,8 @@ new FormModel {
 			"defaultCloseOperation": 3
 			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/ico.jpg" )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq l {space :p:214:p, comp titleLabel:::p:138:p}, seq l {space :p:56:p, par l {comp imeiCodeTip::l:p:139:p, comp imeiCodeFileld:::p:228:p, par t:l::p {comp versionComboBox::l::139:x, comp versionTip::l::139:x}}, space ::111:x, par l {comp timeField:::p:129:p, comp timeTip:::p:139:p, comp stepTip:::p:139:p, comp stepField:::p:129:p}}, seq l {space :p:235:p, comp startButton:::p:88:p}}, space :p:44:p}}"
-				"$verticalGroup": "par l {seq l {space :p:24:p, comp titleLabel:::p:77:p, space u:::p, par b {comp imeiCodeTip::b:p:25:p, comp timeTip::b:p:25:p}, space u:::p, par b {comp imeiCodeFileld::b:p::p, comp timeField::b:p::p}, par l {seq {space s:::p, comp versionTip:::p:25:p}, seq l {space :p:26:p, comp stepTip:::p:25:p}}, space s:::p, par l {comp versionComboBox:::p::p, comp stepField:::p::p}, space ::40:x, comp startButton:::p:39:p, space :p:36:p}}"
+				"$horizontalGroup": "par l {seq {par l {seq l {space :p:214:p, comp titleLabel:::p:138:p, space :0:0:x}, seq l {space :p:56:p, par l:::p {seq l {comp coordinatesTip:::p:83:p, space s:::p, comp longitudeField::::146:x}, comp imeiCodeTip::l:p:139:p, comp imeiCodeFileld:::p:228:p, comp versionComboBox::l:::x, comp versionTip::l:::x}, space ::92:x, par t {par l:t {comp timeField:::p:129:p, comp stepTip:::p:139:p, comp stepField::l:p:129:p, comp timeTip::l:p:139:p}, seq t {comp latitudeField:::p:146:p, space :p:10:p}}}}, space :p:44:p}, seq l {space :p:249:p, comp startButton:::p:88:p, space ::258:x}}"
+				"$verticalGroup": "par l {seq l {space :p:24:p, comp titleLabel:::p:77:p, space s:::p, par l {seq {comp imeiCodeTip:::p:25:p, space u:::p, par b {comp imeiCodeFileld::b:p::p, comp timeField::b:p::p}, par l {seq {space s:::p, comp versionTip:::p:25:p}, seq l {space :p:26:p, comp stepTip:::p:25:p}}, space s:::p, par l {comp versionComboBox:::p::p, comp stepField:::p::p}, space :p:23:p, par b {comp coordinatesTip::b:p:25:p, comp longitudeField::b:p::p, comp latitudeField::b:p::p}}, comp timeTip::l:p:25:p}, space ::40:x, comp startButton:::p:39:p, space :p:30:p}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 102, 102, 102, 255 )
@@ -85,10 +85,30 @@ new FormModel {
 					"background": sfield java.awt.Color darkGray
 					"text": "1500"
 				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "coordinatesTip"
+					"text": "确定经纬度"
+					"foreground": #Color0
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "longitudeField"
+					"font": #Font1
+					"foreground": sfield java.awt.Color black
+					"background": sfield java.awt.Color white
+					"text": "114.367788"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "latitudeField"
+					"font": #Font1
+					"foreground": sfield java.awt.Color black
+					"background": sfield java.awt.Color white
+					"text": "30.534736"
+				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 580, 430 )
+			"size": new java.awt.Dimension( 595, 485 )
 		} )
 	}
 }

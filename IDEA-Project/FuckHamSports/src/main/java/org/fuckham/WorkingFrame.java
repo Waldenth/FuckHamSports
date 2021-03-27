@@ -16,11 +16,13 @@ import java.util.concurrent.ExecutionException;
  * @author dasd
  */
 public class WorkingFrame extends JFrame {
-    public WorkingFrame(String imeiCode,String version,String seconds,String steps) {
+    public WorkingFrame(String imeiCode,String version,String seconds,String steps,String longitude,String latitude) {
         this.imeiCode=imeiCode;
         this.version=version;
         this.seconds=Integer.valueOf(seconds);
         this.steps=Integer.valueOf(steps);
+        this.longtitude=longitude;
+        this.latitude=latitude;
         initComponents();
         RunFucker runFucker=new RunFucker();
         runFucker.execute();
@@ -174,6 +176,8 @@ public class WorkingFrame extends JFrame {
     private StringBuilder logText = new StringBuilder();
     private String imeiCode;
     private String version;
+    private String longtitude;
+    private String latitude;
     private int seconds;
     private int steps;
     private boolean completed=false;
@@ -206,7 +210,7 @@ public class WorkingFrame extends JFrame {
             logText.append(RunFuck.getUserInfo());
             logText.append("\n");
 
-            logText.append(RunFuck.getRunInfo(seconds,steps));
+            logText.append(RunFuck.getRunInfo(seconds,steps,longtitude,latitude));
             logText.append("\n");
 
 

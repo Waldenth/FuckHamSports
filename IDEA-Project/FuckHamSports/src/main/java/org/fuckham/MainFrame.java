@@ -31,6 +31,9 @@ public class MainFrame extends JFrame {
         timeField = new JTextField();
         stepTip = new JLabel();
         stepField = new JTextField();
+        coordinatesTip = new JLabel();
+        longitudeField = new JTextField();
+        latitudeField = new JTextField();
 
         //======== this ========
         setTitle("FuckHam");
@@ -99,6 +102,23 @@ public class MainFrame extends JFrame {
             stepField.setBackground(Color.darkGray);
             stepField.setText("1500");
 
+            //---- coordinatesTip ----
+            coordinatesTip.setText("\u786e\u5b9a\u7ecf\u7eac\u5ea6");
+            coordinatesTip.setForeground(Color.white);
+            coordinatesTip.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+
+            //---- longitudeField ----
+            longitudeField.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+            longitudeField.setForeground(Color.black);
+            longitudeField.setBackground(Color.white);
+            longitudeField.setText("114.367788");
+
+            //---- latitudeField ----
+            latitudeField.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+            latitudeField.setForeground(Color.black);
+            latitudeField.setBackground(Color.white);
+            latitudeField.setText("30.534736");
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
@@ -107,53 +127,68 @@ public class MainFrame extends JFrame {
                         .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGap(214, 214, 214)
-                                .addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGap(56, 56, 56)
-                                .addGroup(panel1Layout.createParallelGroup()
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addComponent(coordinatesTip, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(longitudeField, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
                                     .addComponent(imeiCodeTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(imeiCodeFileld, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(versionComboBox, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                                        .addComponent(versionTip, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                                .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(timeField, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(timeTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(stepTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(stepField, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(235, 235, 235)
-                                .addComponent(startButton, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(versionComboBox)
+                                    .addComponent(versionTip, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addGroup(panel1Layout.createParallelGroup()
+                                        .addComponent(timeField, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(stepTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(stepField, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(timeTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addComponent(latitudeField, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)))))
                         .addGap(44, 44, 44))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(249, 249, 249)
+                        .addComponent(startButton, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(258, Short.MAX_VALUE))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(titleLabel, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(imeiCodeTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(timeTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(imeiCodeFileld, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(timeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panel1Layout.createParallelGroup()
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(versionTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(stepTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(panel1Layout.createParallelGroup()
-                            .addComponent(versionComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(stepField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(imeiCodeTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(imeiCodeFileld, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(timeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(versionTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
+                                        .addComponent(stepTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(versionComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(stepField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGap(23, 23, 23)
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(coordinatesTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(longitudeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(latitudeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(timeTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addComponent(startButton, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))
+                        .addGap(30, 30, 30))
             );
         }
 
@@ -161,7 +196,9 @@ public class MainFrame extends JFrame {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
@@ -179,21 +216,25 @@ public class MainFrame extends JFrame {
                 //System.out.println(versionComboBox.getSelectedItem().toString());
                 //System.out.println(timeField.getText());
                 //System.out.println(stepField.getText());
+                String longtitude=longitudeField.getText().replaceAll("\\s*","");
+                String latitude=latitudeField.getText().replaceAll("\\s*","");
                 int confirmed=JOptionPane.showConfirmDialog(null,"Your IMEI:"+imeiCodeFileld.getText()+"\n"
-                +"Your version:"+versionComboBox.getSelectedItem().toString()+"\n"+"Approximate time:"+timeField.getText()+"(s)\n"
-                        +"Approximate steps:"+stepField.getText(),"确认",JOptionPane.YES_NO_OPTION);
+                        +"Your version:"+versionComboBox.getSelectedItem().toString()+"\n"+"Approximate time:"+timeField.getText()+"(s)\n"
+                        +"Approximate steps:"+stepField.getText()+"\n"
+                        +"Longtitude:"+longtitude+"\n"
+                        +"Latitude:"+latitude,"确认",JOptionPane.YES_NO_OPTION);
                 //System.out.println(confirmed);
                 if(confirmed==0){
                     if(imeiCodeFileld.getText().length()!=32){
                         JOptionPane.showMessageDialog(null, "IMEI码长度应为32", "错误",JOptionPane.ERROR_MESSAGE);
                     }else {
-                        WorkingFrame workingFrame = new WorkingFrame(imeiCodeFileld.getText(), versionComboBox.getSelectedItem().toString(), timeField.getText(), stepField.getText());
+                        WorkingFrame workingFrame = new WorkingFrame(imeiCodeFileld.getText(), versionComboBox.getSelectedItem().toString(), timeField.getText(), stepField.getText(),longtitude,latitude);
                         workingFrame.setVisible(true);
                     }
                 }
             }
         });
-        
+
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
@@ -208,6 +249,9 @@ public class MainFrame extends JFrame {
     private JTextField timeField;
     private JLabel stepTip;
     private JTextField stepField;
+    private JLabel coordinatesTip;
+    private JTextField longitudeField;
+    private JTextField latitudeField;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
 }

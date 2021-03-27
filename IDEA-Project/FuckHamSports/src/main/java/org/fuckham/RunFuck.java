@@ -214,13 +214,13 @@ public class RunFuck {
     }
 
 
-    public static String getRunInfo(int seconds,int steps){
+    public static String getRunInfo(int seconds,int steps,String longtitude,String latitude){
         //回复
         String response="NULL";
 
         // 创建 HttpClient 客户端
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        SRSurl = API_ROOT + "/" + token + "/QM_Runs/SRS?S1=30.534736&S2=114.367788&S3=" + Lengths;
+        SRSurl = API_ROOT + "/" + token + "/QM_Runs/SRS?S1="+latitude+"&S2="+longtitude+"&S3=" + Lengths;
         HttpGet httpGet = new HttpGet(SRSurl);
         Header[] headers={
             new BasicHeader("nonce",nonce),
