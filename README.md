@@ -5,6 +5,20 @@ WHU-汉姆-阳光体育代跑图形界面工具-环境打包-即开即用
 
 参考项目：https://github.com/S-Ex1t/SunnyRunningPy
 
+### Update
+
+v0.1.1版本中添加了简单的设置经纬度的界面
+
+<img src="assets/image-20210327143107182.png" alt="image-20210327143107182" style="zoom:50%;" />
+
+以经度114.367788，纬度30.534736为例，
+
+![coordinates](assets/coordinates.PNG)
+
+可以定位其为武汉大学信息学部田径场，如果需要在其他地方进行测试，请自行查询经纬度并进行设置。如果执行日志界面请求数据显示为空，请检查经纬度是否满足要求。如果正确执行，`WorkingFrame`界面应该能够看到请求到的位置`json`数据
+
+
+
 ## For users
 
 1. 首先，需要您自行获取您的IMEI码，这是您的身份识别码
@@ -104,13 +118,23 @@ WHU-汉姆-阳光体育代跑图形界面工具-环境打包-即开即用
 
 - `RunFuck.java:`核心代码文件，提供了提交跑步资料并请求相关信息的类，其中`run(String imeiCode,String version)`为完全体功能函数（静态方法），用于快速测试模块是否能够正常工作，GUI组件则使用拆分的`login(String aimeiCode,String aversion);  getUserInfo() ; getRunInfo(int seconds,int steps) ; getEndRunningInfo()`静态方法
 - `MainFrame.java:` 使用`java swing`编写的GUI主界面，用于获取输入
-- `WorkingFrame.java:` 跑步过程中的信息界面，用于绘制进度条和显示当前的请求日志信息。**注意，本界面只有带参数的构造方法`public WorkingFrame(String imeiCode,String version,String seconds,String steps)`；并且构造方法最后会直接调用跑步执行体自动开始代跑**
+- `WorkingFrame.java:` 跑步过程中的信息界面，用于绘制进度条和显示当前的请求日志信息。**注意，本界面只有带参数的构造方法`public WorkingFrame(String imeiCode,String version,String seconds,String steps ....)`；并且构造方法最后会直接调用跑步执行体自动开始代跑**
 - `AboutFrame.java:` 其他信息界面
 - `GUI.java:`程序主入口点，绘制一个`MainFrame`
 
 ### 编译
 
 项目使用jdk14进行打包，为保证编译通过，请使用jdk14或者更高版本
+
+#### Attention
+
+- 请不要随意更改项目的**编译器版本和设置**，可能造成(**has verified**) 项目的第三方依赖包和编译版本之间不匹配导致生成的jar无法执行的问题.
+- 如果存在**JNI error**: 使用压缩包管理工具(如7-Zip)打开jar包，进入META-INF目录下，删除第三方包生成的`.SF,.RSA`文件.
+- 如果存在**找不到主类的问题**: 向jar包的MANIFEST.MF文件添加`Main-Class: org.fuckham.GUI`.
+
+![image-20210327143846958](assets/image-20210327143846958.png)
+
+
 
 ## 适用范围
 
@@ -163,5 +187,5 @@ WHU-汉姆-阳光体育代跑图形界面工具-环境打包-即开即用
 
 本项目核心参考于https://github.com/S-Ex1t/SunnyRunningPy
 
-项目遵守GPL3.0免费开源协议，请勿利用信息差倒卖
+项目遵守GPL3.0免费开源协议.
 
