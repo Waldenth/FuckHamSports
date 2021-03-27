@@ -130,6 +130,9 @@ v0.1.1版本中添加了简单的设置经纬度的界面
 
 - 请不要随意更改项目的**编译器版本和设置**，可能造成(**has verified**) 项目的第三方依赖包和编译版本之间不匹配导致生成的jar无法执行的问题.
 - 如果存在**JNI error**: 使用压缩包管理工具(如7-Zip)打开jar包，进入META-INF目录下，删除第三方包生成的`.SF,.RSA`文件.
+
+<img src="assets/image-20210327144554534.png" alt="image-20210327144554534" style="zoom:50%;" />
+
 - 如果存在**找不到主类的问题**: 向jar包的MANIFEST.MF文件添加`Main-Class: org.fuckham.GUI`.
 
 ![image-20210327143846958](assets/image-20210327143846958.png)
