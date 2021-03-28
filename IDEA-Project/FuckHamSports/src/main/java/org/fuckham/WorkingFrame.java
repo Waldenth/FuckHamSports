@@ -10,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,14 +22,21 @@ import java.util.concurrent.ExecutionException;
  * @author dasd
  */
 public class WorkingFrame extends JFrame {
-    public WorkingFrame(String imeiCode,String version,String seconds,String steps,String longitude,String latitude) {
+    public WorkingFrame(MainFrame mainFrame,String imeiCode,String version,String seconds,String steps,String longitude,String latitude) {
         this.imeiCode=imeiCode;
         this.version=version;
         this.seconds=Integer.parseInt(seconds);
         this.steps=Integer.parseInt(steps);
         this.longtitude=longitude;
         this.latitude=latitude;
+        //this.returnFrame=mainFrame;
         initComponents();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                mainFrame.setEnabled(true);
+            }
+        });
         RunFucker runFucker=new RunFucker();
         runFucker.execute();
     }
@@ -131,9 +140,13 @@ public class WorkingFrame extends JFrame {
                     JOptionPane.showMessageDialog(null,"还未完成,日志尚未完全生成","提示",JOptionPane.PLAIN_MESSAGE);
                 }else{
                     JFileChooser jfc=new JFileChooser();
-                    jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES );
-                    jfc.showDialog(new JLabel(), "选择");
-                    File file=jfc.getSelectedFile();
+                    jfc.setSelectedFile(new File(jfc.getCurrentDirectory()+"/log["+formatter.format(new Date(System.currentTimeMillis())).substring(0,10)+"].txt"));
+                    jfc.setFileSelectionMode(JFileChooser.FILES_ONLY );
+                    File file=null;
+                    if(jfc.showDialog(new JLabel(), "选择")==JFileChooser.APPROVE_OPTION){
+                        file=jfc.getSelectedFile();
+                    }
+                    //System.out.println(file.getAbsolutePath());
                     if (file != null) {
                         if (!file.isFile()) {
                             try {
@@ -145,8 +158,9 @@ public class WorkingFrame extends JFrame {
                         }
                         if (file.isFile()) {
                             String log = logText.toString();
+                            FileOutputStream output=null;
                             try {
-                                FileOutputStream output = new FileOutputStream(file);
+                                output = new FileOutputStream(file);
                                 OutputStreamWriter writer = new OutputStreamWriter(output, "utf-8");
                                 writer.write(log);
                                 writer.flush();
@@ -154,6 +168,14 @@ public class WorkingFrame extends JFrame {
                             } catch (IOException ioException) {
                                 JOptionPane.showMessageDialog(null, "写入文件失败", "错误", JOptionPane.ERROR_MESSAGE);
                                 ioException.printStackTrace();
+                            }finally {
+                                if(output!=null){
+                                    try {
+                                        output.close();
+                                    } catch (IOException ioException) {
+                                        ioException.printStackTrace();
+                                    }
+                                }
                             }
                         }
                     }
@@ -190,6 +212,10 @@ public class WorkingFrame extends JFrame {
 
     public static String lastErrorResponse="";
 
+    public SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+
+    //private MainFrame returnFrame;
+
     private class ProgressData{
         private int curSecond;  // 备用
         private String log;
@@ -197,8 +223,6 @@ public class WorkingFrame extends JFrame {
 
 
     public class RunFucker extends SwingWorker<StringBuilder,ProgressData> {
-
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
 
         public RunFucker(){
 

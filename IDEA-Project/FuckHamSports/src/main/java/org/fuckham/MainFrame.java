@@ -214,19 +214,26 @@ public class MainFrame extends JFrame {
                 //System.out.println(versionComboBox.getSelectedItem().toString());
                 //System.out.println(timeField.getText());
                 //System.out.println(stepField.getText());
+                String imeiCode=imeiCodeFileld.getText().replaceAll("\\s*","");
+                String version=versionComboBox.getSelectedItem().toString().replaceAll("\\s*","");
+                String time=timeField.getText().replaceAll("\\s*","");
+                String step=stepField.getText().replaceAll("\\s*","");
                 String longtitude=longitudeField.getText().replaceAll("\\s*","");
                 String latitude=latitudeField.getText().replaceAll("\\s*","");
-                int confirmed=JOptionPane.showConfirmDialog(null,"Your IMEI:"+imeiCodeFileld.getText()+"\n"
-                        +"Your version:"+versionComboBox.getSelectedItem().toString()+"\n"+"Approximate time:"+timeField.getText()+"(s)\n"
-                        +"Approximate steps:"+stepField.getText()+"\n"
+                int confirmed=JOptionPane.showConfirmDialog(null,"Your IMEI:"+imeiCode+"\n"
+                        +"Your version:"+version+"\n"
+                        +"Approximate time:"+time+"(s)\n"
+                        +"Approximate steps:"+step+"\n"
                         +"Longtitude:"+longtitude+"\n"
                         +"Latitude:"+latitude,"确认",JOptionPane.YES_NO_OPTION);
                 //System.out.println(confirmed);
                 if(confirmed==0){
-                    if(imeiCodeFileld.getText().length()!=32){
+                    if(imeiCode.length()!=32){
                         JOptionPane.showMessageDialog(null, "IMEI码长度应为32", "错误",JOptionPane.ERROR_MESSAGE);
                     }else {
-                        WorkingFrame workingFrame = new WorkingFrame(imeiCodeFileld.getText(), versionComboBox.getSelectedItem().toString(), timeField.getText(), stepField.getText(),longtitude,latitude);
+                        MainFrame.this.setEnabled(false);
+                        MainFrame thisMainFrame=MainFrame.this;
+                        WorkingFrame workingFrame = new WorkingFrame(thisMainFrame,imeiCode, version, time, step,longtitude,latitude);
                         workingFrame.setVisible(true);
                     }
                 }
