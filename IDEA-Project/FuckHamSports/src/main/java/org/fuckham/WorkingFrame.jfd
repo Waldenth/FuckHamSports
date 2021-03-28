@@ -5,15 +5,15 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {comp panel1::l:::x}"
-			"$verticalGroup": "par l {seq l {comp panel1:::p::p, space :0:0:x}}"
+			"$verticalGroup": "par l {comp panel1::l:::x}"
 		} ) {
 			name: "this"
 			"title": "Working..."
 			"defaultCloseOperation": 2
 			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/ico.jpg" )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:74:p, comp exportLogButton:::p::p, space ::147:x, comp aboutInfoButton:::p::p, space :p:76:p}, seq {par l {seq {space :p:19:p, comp scrollPane1:::p:420:p}, seq l {space :p:98:p, comp progressBar:::p:265:p}}, space ::24:x}}"
-				"$verticalGroup": "par l {seq l {space :p:33:p, comp progressBar:::p:21:p, space s:::p, comp scrollPane1::::359:x, space s:::p, par b {comp exportLogButton::b:p::p, comp aboutInfoButton::b:p::p}, space :::p}}"
+				"$horizontalGroup": "par l {seq l {space :p:77:p, comp exportLogButton:::p::p, space ::150:x, comp aboutInfoButton:::p::p, space :p:70:p}, seq {par l {seq {space :p:98:p, comp progressBar:::p:265:p}, seq l {space :p:19:p, comp scrollPane1:::p:420:p}}, space ::24:x}}"
+				"$verticalGroup": "par l {seq l {space :p:33:p, comp progressBar:::p:21:p, space s:::p, comp scrollPane1:::p:417:p, space u:::p, par b {comp exportLogButton::b:p::p, comp aboutInfoButton::b:p::p}, space :::p}}"
 			} ) {
 				name: "panel1"
 				"background": sfield java.awt.Color darkGray
@@ -47,7 +47,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 465, 535 )
+			"size": new java.awt.Dimension( 465, 575 )
 		} )
 	}
 }

@@ -4,11 +4,15 @@
 
 package org.fuckham;
 
+import org.json.JSONException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -19,8 +23,8 @@ public class WorkingFrame extends JFrame {
     public WorkingFrame(String imeiCode,String version,String seconds,String steps,String longitude,String latitude) {
         this.imeiCode=imeiCode;
         this.version=version;
-        this.seconds=Integer.valueOf(seconds);
-        this.steps=Integer.valueOf(steps);
+        this.seconds=Integer.parseInt(seconds);
+        this.steps=Integer.parseInt(steps);
         this.longtitude=longitude;
         this.latitude=latitude;
         initComponents();
@@ -77,19 +81,19 @@ public class WorkingFrame extends JFrame {
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
+                        .addGap(77, 77, 77)
                         .addComponent(exportLogButton)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                         .addComponent(aboutInfoButton)
-                        .addGap(76, 76, 76))
+                        .addGap(70, 70, 70))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 420, GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panel1Layout.createSequentialGroup()
                                 .addGap(98, 98, 98)
-                                .addComponent(progressBar, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(progressBar, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 420, GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(24, Short.MAX_VALUE))
             );
             panel1Layout.setVerticalGroup(
@@ -98,8 +102,8 @@ public class WorkingFrame extends JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(progressBar, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                        .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 417, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(exportLogButton)
                             .addComponent(aboutInfoButton))
@@ -115,9 +119,7 @@ public class WorkingFrame extends JFrame {
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -132,25 +134,27 @@ public class WorkingFrame extends JFrame {
                     jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES );
                     jfc.showDialog(new JLabel(), "选择");
                     File file=jfc.getSelectedFile();
-                    if(!file.isFile()){
-                        try {
-                            file.createNewFile();
-                        } catch (IOException ioException) {
-                            JOptionPane.showMessageDialog(null, "创建文件失败", "错误",JOptionPane.ERROR_MESSAGE);
-                            ioException.printStackTrace();
+                    if (file != null) {
+                        if (!file.isFile()) {
+                            try {
+                                file.createNewFile();
+                            } catch (IOException ioException) {
+                                JOptionPane.showMessageDialog(null, "创建文件失败", "错误", JOptionPane.ERROR_MESSAGE);
+                                ioException.printStackTrace();
+                            }
                         }
-                    }
-                    if(file.isFile()){
-                        String log=logText.toString();
-                        try {
-                            FileOutputStream output=new FileOutputStream(file);
-                            OutputStreamWriter writer=new OutputStreamWriter(output,"utf-8");
-                            writer.write(log);
-                            writer.flush();
-                            JOptionPane.showMessageDialog(null,"导出日志成功","提示",JOptionPane.PLAIN_MESSAGE);
-                        } catch (IOException ioException) {
-                            JOptionPane.showMessageDialog(null, "写入文件失败", "错误",JOptionPane.ERROR_MESSAGE);
-                            ioException.printStackTrace();
+                        if (file.isFile()) {
+                            String log = logText.toString();
+                            try {
+                                FileOutputStream output = new FileOutputStream(file);
+                                OutputStreamWriter writer = new OutputStreamWriter(output, "utf-8");
+                                writer.write(log);
+                                writer.flush();
+                                JOptionPane.showMessageDialog(null, "导出日志成功", "提示", JOptionPane.PLAIN_MESSAGE);
+                            } catch (IOException ioException) {
+                                JOptionPane.showMessageDialog(null, "写入文件失败", "错误", JOptionPane.ERROR_MESSAGE);
+                                ioException.printStackTrace();
+                            }
                         }
                     }
 
@@ -173,26 +177,28 @@ public class WorkingFrame extends JFrame {
     private JTextArea logTextArea;
     private JButton exportLogButton;
     private JButton aboutInfoButton;
-    private StringBuilder logText = new StringBuilder();
-    private String imeiCode;
-    private String version;
-    private String longtitude;
-    private String latitude;
-    private int seconds;
-    private int steps;
-    private boolean completed=false;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
+    private final StringBuilder logText = new StringBuilder();
+    private final String imeiCode;
+    private final String version;
+    private final String longtitude;
+    private final String latitude;
+    private final int seconds;
+    private final int steps;
+    private boolean completed=false;
+
+    public static String lastErrorResponse="";
+
     private class ProgressData{
-        private int curSecond;
+        private int curSecond;  // 备用
         private String log;
     }
 
 
     public class RunFucker extends SwingWorker<StringBuilder,ProgressData> {
 
-
-        //private StringBuilder logText = new StringBuilder();
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
 
         public RunFucker(){
 
@@ -200,47 +206,65 @@ public class WorkingFrame extends JFrame {
 
         public StringBuilder doInBackground() throws IOException,InterruptedException {
             RunFuck.randomAlphabet();
-
-            logText.append(RunFuck.login(imeiCode,version));
-            logText.append("\n");
-
-            //System.out.println(logText.toString());
-
-
-            logText.append(RunFuck.getUserInfo());
-            logText.append("\n");
-
-            logText.append(RunFuck.getRunInfo(seconds,steps,longtitude,latitude));
-            logText.append("\n");
-
-
-            progressBar.setMinimum(0);
-            progressBar.setMaximum(Integer.valueOf(RunFuck.RunTime));
-            progressBar.setStringPainted(true);
-
+            Date date = new Date(System.currentTimeMillis());
             var curProgressData=new ProgressData();
-            curProgressData.curSecond=0;
-            curProgressData.log=logText.toString();
-            publish(curProgressData);
+            try{
+                logText.append("/** 运行开始 **/\n// ").append(formatter.format(date)).append(" 请求登录信息:\n");
+                logText.append(RunFuck.login(imeiCode,version));
+                logText.append("\n");
 
-            for(int i=1;i<Integer.valueOf(RunFuck.RunTime);i++){
-                Thread.sleep(1000);
-                curProgressData=new ProgressData();
-                curProgressData.curSecond=i;
-                curProgressData.log="";
+                logText.append("// 请求用户信息:\n");
+                logText.append(RunFuck.getUserInfo());
+                logText.append("\n");
+
+                logText.append(("// 请求跑步信息:\n"));
+                logText.append(RunFuck.getRunInfo(seconds,steps,longtitude,latitude));
+                logText.append("\n");
+
+                progressBar.setMinimum(0);
+                progressBar.setMaximum(Integer.parseInt(RunFuck.RunTime));
+                progressBar.setStringPainted(true);
+
+                logText.append("// 开始延时模拟,时间为:").append(Integer.parseInt(RunFuck.RunTime)).append("s ;步数为:").append(Integer.parseInt(RunFuck.RunStep)).append("\n");
+
+                curProgressData.curSecond=0;
+                curProgressData.log=logText.toString();
                 publish(curProgressData);
-                progressBar.setValue(i);
+
+                for(int i = 1; i<Integer.parseInt(RunFuck.RunTime); i++){
+                    Thread.sleep(1000);
+                    /* 备用
+                    curProgressData=new ProgressData();
+                    curProgressData.curSecond=i;
+                    curProgressData.log="";
+                    publish(curProgressData);
+                    */
+                    progressBar.setValue(i);
+                }
+
+                curProgressData=new ProgressData();
+                curProgressData.curSecond=Integer.parseInt(RunFuck.RunTime);
+
+                date = new Date(System.currentTimeMillis());
+
+                curProgressData.log="// "+formatter.format(date)+"\n"+RunFuck.getEndRunningInfo()+"\n/** 运行结束 **/";
+
+                logText.append(curProgressData.log);
+                logText.append("\n");
+
+                publish(curProgressData);
+
+                progressBar.setValue(Integer.parseInt(RunFuck.RunTime));
+            }catch (JSONException e){
+                curProgressData=new ProgressData();
+                curProgressData.curSecond=0x3fffffff;
+                curProgressData.log="\n/** 错误发生前全部的信息 **/\n"+logText.toString()+WorkingFrame.lastErrorResponse+"\n";
+                logText.append(curProgressData.log);
+                publish(curProgressData);
+
+                return logText;
+                //e.printStackTrace();
             }
-
-
-            curProgressData=new ProgressData();
-            curProgressData.curSecond=Integer.valueOf(RunFuck.RunTime);
-            curProgressData.log=RunFuck.getEndRunningInfo();
-
-            logText.append(curProgressData.log);
-            logText.append("\n");
-
-            progressBar.setValue(Integer.valueOf(RunFuck.RunTime));
 
             return logText;
         }
@@ -258,9 +282,7 @@ public class WorkingFrame extends JFrame {
             completed=true;
             try {
                 result = get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
             logTextArea.setText(result.toString());

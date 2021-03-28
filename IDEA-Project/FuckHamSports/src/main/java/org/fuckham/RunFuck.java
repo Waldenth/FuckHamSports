@@ -8,6 +8,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.swing.*;
@@ -56,7 +57,7 @@ public class RunFuck {
     public static boolean randomAlphabet(){
         Collections.shuffle(alphabet);
         alphabet=alphabet.subList(0,10);
-        StringBuffer tmpTable=new StringBuffer();
+        StringBuilder tmpTable=new StringBuilder();
         for(int i=0;i<10;i++){
             tmpTable.append(alphabet.get(i));
         }
@@ -107,7 +108,7 @@ public class RunFuck {
         }
     }
 
-    public static String login(String aimeiCode,String aversion){
+    public static String login(String aimeiCode,String aversion)throws JSONException{
         imeiCode=aimeiCode;
         version=aversion;
         //回复
@@ -136,7 +137,12 @@ public class RunFuck {
             nonce = String.valueOf(rand.nextInt(10000000-100000+1)+100000);
             sign=getMD5(token+nonce+timespan+userID).toUpperCase();
         }catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "登录请求异常:IOException", "错误",JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
+        }catch (JSONException e){
+            JOptionPane.showMessageDialog(null, "登录请求异常:JSONException", "错误",JOptionPane.ERROR_MESSAGE);
+            WorkingFrame.lastErrorResponse=response;
+            throw e;
         }
         // 无论如何必须关闭连接
         finally {
@@ -159,7 +165,7 @@ public class RunFuck {
         return response;
     }
 
-    public static String getUserInfo(){
+    public static String getUserInfo() throws JSONException{
         //回复
         String response="NULL";
 
@@ -189,7 +195,12 @@ public class RunFuck {
             JSONObject jsonObject=new JSONObject(response);
             Lengths=jsonObject.getJSONObject("Data").getJSONObject("SchoolRun").get("Lengths").toString();
         }catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "用户信息请求异常:IOException", "错误",JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
+        }catch (JSONException e){
+            JOptionPane.showMessageDialog(null, "用户信息请求异常:JSONException", "错误",JOptionPane.ERROR_MESSAGE);
+            WorkingFrame.lastErrorResponse=response;
+            throw e;
         }
         // 无论如何必须关闭连接
         finally {
@@ -214,7 +225,7 @@ public class RunFuck {
     }
 
 
-    public static String getRunInfo(int seconds,int steps,String longtitude,String latitude){
+    public static String getRunInfo(int seconds,int steps,String longtitude,String latitude) throws JSONException{
         //回复
         String response="NULL";
 
@@ -244,10 +255,15 @@ public class RunFuck {
             JSONObject jsonObject=new JSONObject(response);
             RunId = jsonObject.getJSONObject("Data").get("RunId").toString();
             RunTime = String.valueOf(rand.nextInt(35)+seconds);  // seconds
-            RunDist = String.valueOf( Integer.valueOf(Lengths)+ rand.nextInt(4)); 
+            RunDist = String.valueOf( Integer.parseInt(Lengths)+ rand.nextInt(4));
             RunStep = String.valueOf(rand.nextInt(250)+steps);  // steps
         }catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "跑步定位请求异常:IOException", "错误",JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
+        }catch (JSONException e){
+            JOptionPane.showMessageDialog(null, "跑步定位请求异常:JSONException", "错误",JOptionPane.ERROR_MESSAGE);
+            WorkingFrame.lastErrorResponse=response;
+            throw e;
         }
         // 无论如何必须关闭连接
         finally {
@@ -270,7 +286,7 @@ public class RunFuck {
          return response;
     }
 
-    public static String getEndRunningInfo(){
+    public static String getEndRunningInfo() throws JSONException{
         //回复
          String response="NULL";
         // 创建 HttpClient 客户端
@@ -303,7 +319,12 @@ public class RunFuck {
             else
                 response=response+"\n失败\n"+jsonObject.get("Data").toString();
         }catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "结束跑步请求异常:IOException", "错误",JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
+        }catch (JSONException e){
+            JOptionPane.showMessageDialog(null, "结束跑步请求异常:JSONException", "错误",JOptionPane.ERROR_MESSAGE);
+            WorkingFrame.lastErrorResponse=response;
+            throw e;
         }
         // 无论如何必须关闭连接
         finally {
@@ -336,7 +357,6 @@ public class RunFuck {
             System.out.println("Error: IMEI Format is incorrect");
             return false;
         }
-
 
         // 创建 HttpClient 客户端
         CloseableHttpClient httpClient = HttpClients.createDefault();
