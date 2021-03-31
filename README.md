@@ -5,6 +5,14 @@ WHU-汉姆-阳光体育代跑图形界面工具-环境打包-即开即用
 
 参考项目：https://github.com/S-Ex1t/SunnyRunningPy
 
+
+
+**项目jar文件：**仓库不再存放二进制可执行jar文件，请前往https://github.com/Waldenth/FuckHamSports/releases，选择对应版本的jar下载获取
+
+网盘备份：https://share.weiyun.com/fcFMpOXu
+
+
+
 ### Update
 
 #### v0.1.3
