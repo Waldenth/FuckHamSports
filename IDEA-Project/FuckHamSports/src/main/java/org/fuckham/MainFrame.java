@@ -131,12 +131,12 @@ public class MainFrame extends JFrame {
             yesButton.setText("\u662f");
             yesButton.setBackground(new Color(102, 102, 102));
             yesButton.setForeground(Color.white);
+            yesButton.setSelected(true);
 
             //---- noButton ----
             noButton.setText("\u5426");
             noButton.setBackground(new Color(102, 102, 102));
             noButton.setForeground(Color.white);
-            noButton.setSelected(true);
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);

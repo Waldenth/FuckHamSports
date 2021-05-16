@@ -117,6 +117,7 @@ new FormModel {
 					"background": new java.awt.Color( 102, 102, 102, 255 )
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 					"$buttonGroup": new FormReference( "sleepButtonGroup" )
+					"selected": true
 				} )
 				add( new FormComponent( "javax.swing.JRadioButton" ) {
 					name: "noButton"
@@ -124,7 +125,6 @@ new FormModel {
 					"background": new java.awt.Color( 102, 102, 102, 255 )
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 					"$buttonGroup": new FormReference( "sleepButtonGroup" )
-					"selected": true
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
