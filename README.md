@@ -13,6 +13,10 @@ WHU-汉姆-阳光体育代跑图形界面工具-环境打包-即开即用
 
 网盘备份：https://share.weiyun.com/fcFMpOXu
 
+### 如果不想安装JDK环境
+
+请使用Windows-amd64操作系统，下载网盘链接中的`(无需安装JDK)FuckHamSports.zip`，解压，双击`start.exe/vbs/bat`即可运行，请不要随意更改`FuckHamSports`文件夹下的文件层次结构
+
 
 
 ### Update
