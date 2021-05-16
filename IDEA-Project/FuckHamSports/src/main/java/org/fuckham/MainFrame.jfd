@@ -12,8 +12,8 @@ new FormModel {
 			"defaultCloseOperation": 3
 			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/ico.jpg" )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq l {space :p:214:p, comp titleLabel:::p:138:p, space :0:0:x}, seq l {space :p:56:p, par l:::p {seq l {comp coordinatesTip:::p:83:p, space s:::p, comp longitudeField::::146:x}, comp imeiCodeTip::l:p:139:p, comp imeiCodeFileld:::p:228:p, comp versionComboBox::l:::x, comp versionTip::l:::x}, space ::60:x, par t {par l:t {comp timeField:::p:129:p, comp stepTip:::p:139:p, comp stepField::l:p:129:p, comp timeTip::l:p:139:p}, seq t {comp latitudeField:::p:146:p, space :p:10:p}}}}, space :p:44:p}, seq l {space :p:249:p, comp startButton:::p:88:p, space :::x}}"
-				"$verticalGroup": "par l {seq l {space :p:24:p, comp titleLabel:::p:77:p, space s:::p, par l {seq {comp imeiCodeTip:::p:25:p, space u:::p, par b {comp imeiCodeFileld::b:p::p, comp timeField::b:p::p}, par l {seq {space s:::p, comp versionTip:::p:25:p}, seq l {space :p:26:p, comp stepTip:::p:25:p}}, space s:::p, par l {comp versionComboBox:::p::p, comp stepField:::p::p}, space :p:23:p, par b {comp coordinatesTip::b:p:25:p, comp longitudeField::b:p::p, comp latitudeField::b:p::p}}, comp timeTip::l:p:25:p}, space ::24:x, comp startButton:::p:39:p, space :p:30:p}}"
+				"$horizontalGroup": "par l {seq {par l {seq l {space :p:214:p, comp titleLabel:::p:138:p, space :0:0:x}, seq l {space :p:56:p, par l {seq l {par l:::p {comp imeiCodeTip::l:p:139:p, comp imeiCodeFileld:::p:228:p, comp versionComboBox::l::247:x, comp versionTip::l:::x}, space :::x, par l {comp timeField:::p:129:p, comp stepTip:::p:139:p, comp stepField::l:p:129:p, comp timeTip::l:p:139:p}}, seq l {comp coordinatesTip:::p:83:p, space :::p, comp longitudeField:::p:110:p, space :::p, comp latitudeField:::p:110:p, space :::p, comp needSleepTips:::p::p, space s:::p, comp yesButton:::p:43:p, space :::p, comp noButton:::p:43:p, space :0:13:x}}}}, space :p:29:p}, seq l {space :p:249:p, comp startButton:::p:88:p, space :::x}}"
+				"$verticalGroup": "par l {seq l {space :p:24:p, comp titleLabel:::p:77:p, space s:::p, par l {seq l {comp imeiCodeTip:::p:25:p, space u:::p, par b {comp imeiCodeFileld::b:p::p, comp timeField::b:p::p}, par l {seq {space s:::p, comp versionTip:::p:25:p}, seq l {space :p:26:p, comp stepTip:::p:25:p}}, space s:::p, par l {comp versionComboBox:::p::p, comp stepField:::p::p}}, comp timeTip::l:p:25:p}, space :p:23:p, par b {comp coordinatesTip::b:p:25:p, comp longitudeField::b:p::p, comp latitudeField::b:p::p, comp needSleepTips::b:p:25:p, comp yesButton::b:p::p, comp noButton::b:p::p}, space ::40:x, comp startButton:::p:39:p, space :p:30:p}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 102, 102, 102, 255 )
@@ -105,10 +105,36 @@ new FormModel {
 					"background": sfield java.awt.Color white
 					"text": "30.534736"
 				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "needSleepTips"
+					"text": "模拟休眠"
+					"foreground": #Color0
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "yesButton"
+					"text": "是"
+					"background": new java.awt.Color( 102, 102, 102, 255 )
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"$buttonGroup": new FormReference( "sleepButtonGroup" )
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "noButton"
+					"text": "否"
+					"background": new java.awt.Color( 102, 102, 102, 255 )
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"$buttonGroup": new FormReference( "sleepButtonGroup" )
+					"selected": true
+				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
 			"size": new java.awt.Dimension( 595, 485 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "sleepButtonGroup"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 5, 500 )
 		} )
 	}
 }

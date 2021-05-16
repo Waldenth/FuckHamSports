@@ -22,13 +22,14 @@ import java.util.concurrent.ExecutionException;
  * @author dasd
  */
 public class WorkingFrame extends JFrame {
-    public WorkingFrame(MainFrame mainFrame,String imeiCode,String version,String seconds,String steps,String longitude,String latitude) {
+    public WorkingFrame(MainFrame mainFrame,String imeiCode,String version,String seconds,String steps,String longitude,String latitude,boolean needSleep) {
         this.imeiCode=imeiCode;
         this.version=version;
         this.seconds=Integer.parseInt(seconds);
         this.steps=Integer.parseInt(steps);
         this.longtitude=longitude;
         this.latitude=latitude;
+        this.needSleep=needSleep;
         //this.returnFrame=mainFrame;
         initComponents();
         this.addWindowListener(new WindowAdapter() {
@@ -208,6 +209,7 @@ public class WorkingFrame extends JFrame {
     private final String latitude;
     private final int seconds;
     private final int steps;
+    private final boolean needSleep;
     private boolean completed=false;
 
     public static String lastErrorResponse="";
@@ -242,20 +244,32 @@ public class WorkingFrame extends JFrame {
                 logText.append("\n");
 
                 logText.append(("// 请求跑步信息:\n"));
+                if(!needSleep){
+                    logText.append("不进行延时模拟\n");
+                    progressBar.setMinimum(0);
+                    progressBar.setMaximum(2);
+                }else{
+                    progressBar.setMinimum(0);
+                    progressBar.setMaximum(Integer.parseInt(RunFuck.RunTime));
+                }
                 logText.append(RunFuck.getRunInfo(seconds,steps,longtitude,latitude));
                 logText.append("\n");
 
-                progressBar.setMinimum(0);
-                progressBar.setMaximum(Integer.parseInt(RunFuck.RunTime));
                 progressBar.setStringPainted(true);
 
-                logText.append("// 开始延时模拟,时间为:").append(Integer.parseInt(RunFuck.RunTime)).append("s ;步数为:").append(Integer.parseInt(RunFuck.RunStep)).append("\n");
 
+                if(needSleep) {
+                    logText.append("// 开始延时模拟,时间为:").append(Integer.parseInt(RunFuck.RunTime)).append("s ;步数为:").append(Integer.parseInt(RunFuck.RunStep)).append("\n");
+                }else{
+                    logText.append("// 不进行延时模拟,设置跑步时间为:").append(Integer.parseInt(RunFuck.RunTime)).append("s ;步数为:").append(Integer.parseInt(RunFuck.RunStep)).append("\n");
+                }
                 curProgressData.curSecond=0;
                 curProgressData.log=logText.toString();
                 publish(curProgressData);
 
-                for(int i = 1; i<Integer.parseInt(RunFuck.RunTime); i++){
+                int waitTime=needSleep?Integer.parseInt(RunFuck.RunTime):2;
+
+                for(int i = 1; i<waitTime; i++){
                     Thread.sleep(1000);
                     /* 备用
                     curProgressData=new ProgressData();

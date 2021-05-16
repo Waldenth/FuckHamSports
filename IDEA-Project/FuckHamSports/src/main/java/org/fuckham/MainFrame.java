@@ -34,6 +34,9 @@ public class MainFrame extends JFrame {
         coordinatesTip = new JLabel();
         longitudeField = new JTextField();
         latitudeField = new JTextField();
+        needSleepTips = new JLabel();
+        yesButton = new JRadioButton();
+        noButton = new JRadioButton();
 
         //======== this ========
         setTitle("FuckHam");
@@ -119,6 +122,22 @@ public class MainFrame extends JFrame {
             latitudeField.setBackground(Color.white);
             latitudeField.setText("30.534736");
 
+            //---- needSleepTips ----
+            needSleepTips.setText("\u6a21\u62df\u4f11\u7720");
+            needSleepTips.setForeground(Color.white);
+            needSleepTips.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 16));
+
+            //---- yesButton ----
+            yesButton.setText("\u662f");
+            yesButton.setBackground(new Color(102, 102, 102));
+            yesButton.setForeground(Color.white);
+
+            //---- noButton ----
+            noButton.setText("\u5426");
+            noButton.setBackground(new Color(102, 102, 102));
+            noButton.setForeground(Color.white);
+            noButton.setSelected(true);
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
@@ -131,26 +150,33 @@ public class MainFrame extends JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGap(56, 56, 56)
-                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(imeiCodeTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(imeiCodeFileld, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(versionComboBox, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                                            .addComponent(versionTip, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(panel1Layout.createParallelGroup()
+                                            .addComponent(timeField, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(stepTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(stepField, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(timeTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addComponent(coordinatesTip, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(longitudeField, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(latitudeField, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(needSleepTips)
                                         .addGap(18, 18, 18)
-                                        .addComponent(longitudeField, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
-                                    .addComponent(imeiCodeTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(imeiCodeFileld, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(versionComboBox)
-                                    .addComponent(versionTip, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addGroup(panel1Layout.createParallelGroup()
-                                        .addComponent(timeField, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(stepTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(stepField, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(timeTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(latitudeField, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(10, 10, 10)))))
-                        .addGap(44, 44, 44))
+                                        .addComponent(yesButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(noButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 13, Short.MAX_VALUE)))))
+                        .addGap(29, 29, 29))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(249, 249, 249)
                         .addComponent(startButton, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
@@ -179,14 +205,17 @@ public class MainFrame extends JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(panel1Layout.createParallelGroup()
                                     .addComponent(versionComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(stepField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(23, 23, 23)
-                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(coordinatesTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(longitudeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(latitudeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(stepField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                             .addComponent(timeTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addGap(23, 23, 23)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(coordinatesTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(longitudeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(latitudeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(needSleepTips, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(yesButton)
+                            .addComponent(noButton))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addComponent(startButton, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))
             );
@@ -204,6 +233,11 @@ public class MainFrame extends JFrame {
         );
         pack();
         setLocationRelativeTo(getOwner());
+
+        //---- sleepButtonGroup ----
+        var sleepButtonGroup = new ButtonGroup();
+        sleepButtonGroup.add(yesButton);
+        sleepButtonGroup.add(noButton);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
 
 
@@ -231,9 +265,14 @@ public class MainFrame extends JFrame {
                     if(imeiCode.length()!=32){
                         JOptionPane.showMessageDialog(null, "IMEI码长度应为32", "错误",JOptionPane.ERROR_MESSAGE);
                     }else {
+                        boolean needSleep=true;
+                        if(noButton.isSelected()){
+                            JOptionPane.showMessageDialog(null, "你选择了不进行休眠模拟\n这样可能导致服务器端请求时间异常.", "警告",JOptionPane.WARNING_MESSAGE);
+                            needSleep=false;
+                        }
                         MainFrame.this.setEnabled(false);
                         MainFrame thisMainFrame=MainFrame.this;
-                        WorkingFrame workingFrame = new WorkingFrame(thisMainFrame,imeiCode, version, time, step,longtitude,latitude);
+                        WorkingFrame workingFrame = new WorkingFrame(thisMainFrame,imeiCode, version, time, step,longtitude,latitude,needSleep);
                         workingFrame.setVisible(true);
                     }
                 }
@@ -257,6 +296,9 @@ public class MainFrame extends JFrame {
     private JLabel coordinatesTip;
     private JTextField longitudeField;
     private JTextField latitudeField;
+    private JLabel needSleepTips;
+    private JRadioButton yesButton;
+    private JRadioButton noButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
 }
