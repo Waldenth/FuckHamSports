@@ -11,15 +11,23 @@ WHU-汉姆-阳光体育代跑图形界面工具-环境打包-即开即用
 
 ​						选择对应版本的jar下载获取
 
-网盘备份：https://share.weiyun.com/fcFMpOXu
+网盘备份：[文件分享 (weiyun.com)](https://share.weiyun.com/8nCruLVL)
 
 ### 如果不想安装JDK环境
 
-请使用Windows-amd64操作系统，下载网盘链接中的`(无需安装JDK)FuckHamSports.zip`，解压，双击`start.exe/vbs/bat`即可运行，请不要随意更改`FuckHamSports`文件夹下的文件层次结构
+请使用Windows-amd64操作系统，下载网盘链接中的`(无需安装JDK)FuckHamSports.zip`，解压，双击`start.exe/vbs/bat`即可运行，请不要随意更改`FuckHamSports`文件夹下的文件层次结构，默认打包最新版本`.jar`
+
+**注意: 使用此方式请确保整个路径为全英文路径！！！**
 
 
 
 ### Update
+
+#### v0.1.5
+
+添加了保存配置功能，将当前主界面的所有设置导出到同目录下的`fuckham.conf`配置文件中，每次启动时会尝试读取该文件还原自定义配置，如果文件无法正确解析会报错并使用默认配置。
+
+<img src="assets/image-20210522011947610.png" alt="image-20210522011947610" style="zoom:50%;" />
 
 #### v0.1.4
 

@@ -4,9 +4,15 @@
 
 package org.fuckham;
 
+
+
+
+import org.json.JSONObject;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
@@ -16,6 +22,42 @@ import javax.swing.GroupLayout;
 public class MainFrame extends JFrame {
     public MainFrame() {
         initComponents();
+    }
+
+    private void initConfiguration() throws Exception{
+
+        File file=new File("fuckham.conf");
+        String configurationStr=null;
+        if(file.exists()){
+            try(FileInputStream fis=new FileInputStream(file)){
+                StringBuilder buffer=new StringBuilder();
+                InputStreamReader ipr = new InputStreamReader(fis, "utf-8");
+                BufferedReader reader = new BufferedReader(ipr);
+                String tempStr;
+                while ((tempStr = reader.readLine()) != null) {
+                    buffer.append(tempStr);
+                }
+                reader.close();
+                configurationStr=buffer.toString();
+            }catch (IOException e){
+                JOptionPane.showMessageDialog(null, "读取配置文件失败", "错误", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
+            JSONObject configureJSONObject=new JSONObject(configurationStr);
+            Configure configure=Configure.getConfigureObject(configureJSONObject);
+            //System.out.println(configure.imeiCode);
+            //System.out.println(configure.needSleep);
+            //System.out.println(configure.coordinate.longitude);
+            //System.out.println(configure.coordinate.latitude);
+            imeiCodeFileld.setText(configure.imeiCode);
+            versionComboBox.setSelectedIndex(configure.versionIndex);
+            timeField.setText(configure.runtime);
+            stepField.setText(configure.step);
+            longitudeField.setText(configure.coordinate.longitude);
+            latitudeField.setText(configure.coordinate.latitude);
+            yesButton.setSelected(configure.needSleep);
+            noButton.setSelected(!configure.needSleep);
+        }
     }
 
     private void initComponents() {
@@ -37,6 +79,7 @@ public class MainFrame extends JFrame {
         needSleepTips = new JLabel();
         yesButton = new JRadioButton();
         noButton = new JRadioButton();
+        saveConfigureButton = new JButton();
 
         //======== this ========
         setTitle("FuckHam");
@@ -138,6 +181,12 @@ public class MainFrame extends JFrame {
             noButton.setBackground(new Color(102, 102, 102));
             noButton.setForeground(Color.white);
 
+            //---- saveConfigureButton ----
+            saveConfigureButton.setText("\u4fdd\u5b58\u914d\u7f6e");
+            saveConfigureButton.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 10));
+            saveConfigureButton.setBackground(Color.darkGray);
+            saveConfigureButton.setForeground(Color.white);
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
@@ -151,36 +200,37 @@ public class MainFrame extends JFrame {
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGap(56, 56, 56)
                                 .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(imeiCodeTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(imeiCodeFileld, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(versionComboBox, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                                        .addComponent(versionTip, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
                                     .addGroup(panel1Layout.createSequentialGroup()
-                                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(imeiCodeTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(imeiCodeFileld, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(versionComboBox, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                                            .addComponent(versionTip, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(panel1Layout.createParallelGroup()
-                                            .addComponent(timeField, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(stepTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(stepField, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(timeTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(panel1Layout.createSequentialGroup()
+                                                .addComponent(coordinatesTip, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(longitudeField, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(saveConfigureButton, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(latitudeField, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(timeField, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(stepTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(timeTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(stepField, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
                                     .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(coordinatesTip, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(longitudeField, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(latitudeField, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(needSleepTips)
                                         .addGap(18, 18, 18)
-                                        .addComponent(yesButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(noButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 13, Short.MAX_VALUE)))))
+                                        .addGroup(panel1Layout.createParallelGroup()
+                                            .addComponent(noButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(yesButton, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))))))
                         .addGap(29, 29, 29))
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(249, 249, 249)
+                        .addGap(248, 248, 248)
                         .addComponent(startButton, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(257, Short.MAX_VALUE))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
@@ -195,29 +245,34 @@ public class MainFrame extends JFrame {
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                     .addComponent(imeiCodeFileld, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(timeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panel1Layout.createParallelGroup()
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(versionTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addGap(26, 26, 26)
-                                        .addComponent(stepTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
-                                .addGroup(panel1Layout.createParallelGroup()
-                                    .addComponent(versionComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(stepField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(versionTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(stepTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)))
                             .addComponent(timeTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(coordinatesTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(longitudeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(latitudeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(needSleepTips, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(yesButton)
-                            .addComponent(noButton))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addComponent(startButton, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panel1Layout.createParallelGroup()
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(stepField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(needSleepTips, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(yesButton))
+                                .addGap(18, 18, 18)
+                                .addComponent(noButton)
+                                .addContainerGap(102, Short.MAX_VALUE))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(versionComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(coordinatesTip, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(longitudeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(latitudeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(saveConfigureButton)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                                .addComponent(startButton, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23))))
             );
         }
 
@@ -240,6 +295,11 @@ public class MainFrame extends JFrame {
         sleepButtonGroup.add(noButton);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
 
+        try {
+            initConfiguration();
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(null, "载入设置文件失败\n请检查文件是否找到更改或删除文件\n即将以默认配置运行.", "错误", JOptionPane.ERROR_MESSAGE);
+        }
 
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -279,6 +339,54 @@ public class MainFrame extends JFrame {
             }
         });
 
+        saveConfigureButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String imeiCode=imeiCodeFileld.getText().replaceAll("\\s*","");
+                int versionIndex=versionComboBox.getSelectedIndex();
+                String version=versionComboBox.getSelectedItem().toString().replaceAll("\\s*","");
+                String time=timeField.getText().replaceAll("\\s*","");
+                String step=stepField.getText().replaceAll("\\s*","");
+                String longtitude=longitudeField.getText().replaceAll("\\s*","");
+                String latitude=latitudeField.getText().replaceAll("\\s*","");
+                boolean needSleep=noButton.isSelected()?false:true;
+
+                int confirmed=JOptionPane.showConfirmDialog(null,"请确认导出配置:\nYour IMEI:"+imeiCode+"\n"
+                        +"Your version:"+version+"\n"
+                        +"Approximate time:"+time+"(s)\n"
+                        +"Approximate steps:"+step+"\n"
+                        +"Longtitude:"+longtitude+"\n"
+                        +"Latitude:"+latitude+"\n"
+                        +"needSleep:"+needSleep,"确认",JOptionPane.YES_NO_OPTION);
+                if(confirmed==0){
+                    //Configure userCongiure=new Configure(imeiCode,version,new Coordinate(longtitude,latitude),time,step,needSleep);
+                    //com.alibaba.fastjson.JSONObject configureJSONObject= new com.alibaba.fastjson.JSONObject((Map<String, Object>) userCongiure);
+                    //System.out.println(configureJSONObject);
+                    JSONObject configureJSONObject=Configure.toJSONObject(imeiCode,versionIndex,new Coordinate(longtitude,latitude),time,step,needSleep);
+                    File file=new File("fuckham.conf");
+                    FileOutputStream output=null;
+                    try {
+                        output = new FileOutputStream(file);
+                        OutputStreamWriter writer = new OutputStreamWriter(output, "utf-8");
+                        writer.write(configureJSONObject.toString());
+                        writer.flush();
+                        JOptionPane.showMessageDialog(null, "导出配置成功", "提示", JOptionPane.PLAIN_MESSAGE);
+                    } catch (Exception exception) {
+                        exception.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "导出配置失败", "错误", JOptionPane.ERROR_MESSAGE);
+                    }finally {
+                        if(output!=null){
+                            try {
+                                output.close();
+                            } catch (IOException ioException) {
+                                ioException.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
@@ -299,6 +407,7 @@ public class MainFrame extends JFrame {
     private JLabel needSleepTips;
     private JRadioButton yesButton;
     private JRadioButton noButton;
+    private JButton saveConfigureButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 
 }

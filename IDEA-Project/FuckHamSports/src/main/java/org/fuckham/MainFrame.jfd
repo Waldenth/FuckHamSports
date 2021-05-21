@@ -12,8 +12,8 @@ new FormModel {
 			"defaultCloseOperation": 3
 			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/ico.jpg" )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq l {space :p:214:p, comp titleLabel:::p:138:p, space :0:0:x}, seq l {space :p:56:p, par l {seq l {par l:::p {comp imeiCodeTip::l:p:139:p, comp imeiCodeFileld:::p:228:p, comp versionComboBox::l::247:x, comp versionTip::l:::x}, space :::x, par l {comp timeField:::p:129:p, comp stepTip:::p:139:p, comp stepField::l:p:129:p, comp timeTip::l:p:139:p}}, seq l {comp coordinatesTip:::p:83:p, space :::p, comp longitudeField:::p:110:p, space :::p, comp latitudeField:::p:110:p, space :::p, comp needSleepTips:::p::p, space s:::p, comp yesButton:::p:43:p, space :::p, comp noButton:::p:43:p, space :0:13:x}}}}, space :p:29:p}, seq l {space :p:249:p, comp startButton:::p:88:p, space :::x}}"
-				"$verticalGroup": "par l {seq l {space :p:24:p, comp titleLabel:::p:77:p, space s:::p, par l {seq l {comp imeiCodeTip:::p:25:p, space u:::p, par b {comp imeiCodeFileld::b:p::p, comp timeField::b:p::p}, par l {seq {space s:::p, comp versionTip:::p:25:p}, seq l {space :p:26:p, comp stepTip:::p:25:p}}, space s:::p, par l {comp versionComboBox:::p::p, comp stepField:::p::p}}, comp timeTip::l:p:25:p}, space :p:23:p, par b {comp coordinatesTip::b:p:25:p, comp longitudeField::b:p::p, comp latitudeField::b:p::p, comp needSleepTips::b:p:25:p, comp yesButton::b:p::p, comp noButton::b:p::p}, space ::40:x, comp startButton:::p:39:p, space :p:30:p}}"
+				"$horizontalGroup": "par l {seq {par l {seq l {space :p:214:p, comp titleLabel:::p:138:p, space :0:0:x}, seq l {space :p:56:p, par l {comp imeiCodeTip::l:p:139:p, comp imeiCodeFileld:::p:228:p, par t:l::p {comp versionComboBox::l::247:x, comp versionTip::l::247:x}, seq l {par l {seq {comp coordinatesTip:::p:83:p, space :::p, comp longitudeField:::p:110:p}, comp saveConfigureButton:::p:93:p}, space u:::p, comp latitudeField:::p:110:p}}, space ::48:x, par l {comp timeField:::p:129:p, comp stepTip::l:p:139:p, comp timeTip::l:p:139:p, comp stepField::l:p:129:p, seq l {comp needSleepTips:::p::p, space s:::p, par l {comp noButton:::p:43:p, comp yesButton:::p:43:p}}}}}, space :p:29:p}, seq l {space :p:248:p, comp startButton:::p:88:p, space ::257:x}}"
+				"$verticalGroup": "par l {seq l {space :p:24:p, comp titleLabel:::p:77:p, space s:::p, par l {seq l {comp imeiCodeTip:::p:25:p, space u:::p, par b {comp imeiCodeFileld::b:p::p, comp timeField::b:p::p}, space s:::p, par b {comp versionTip::b:p:25:p, comp stepTip::b:p:25:p}}, comp timeTip::l:p:25:p}, space u:::p, par l {seq {comp stepField:::p::p, space u:::p, par b {comp needSleepTips::b:p:25:p, comp yesButton::b:p::p}, space s:::p, comp noButton:::p::p, space ::102:x}, seq l {comp versionComboBox:::p::p, space u:::p, par b {comp coordinatesTip::b:p:25:p, comp longitudeField::b:p::p, comp latitudeField::b:p::p}, space u:::p, comp saveConfigureButton:::p::p, space ::32:x, comp startButton:::p:39:p, space :p:23:p}}}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 102, 102, 102, 255 )
@@ -57,7 +57,7 @@ new FormModel {
 					"text": "Start"
 					"font": new java.awt.Font( "Microsoft YaHei UI", 0, 16 )
 					"background": sfield java.awt.Color darkGray
-					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"foreground": &Color1 new java.awt.Color( 255, 255, 255, 255 )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "timeTip"
@@ -126,6 +126,13 @@ new FormModel {
 					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 					"$buttonGroup": new FormReference( "sleepButtonGroup" )
 				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "saveConfigureButton"
+					"text": "保存配置"
+					"font": new java.awt.Font( "Microsoft YaHei UI", 0, 10 )
+					"background": sfield java.awt.Color darkGray
+					"foreground": #Color1
+				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
@@ -134,7 +141,7 @@ new FormModel {
 		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
 			name: "sleepButtonGroup"
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 5, 500 )
+			"location": new java.awt.Point( 5, 520 )
 		} )
 	}
 }
