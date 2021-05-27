@@ -243,6 +243,11 @@ public class WorkingFrame extends JFrame {
                 logText.append(RunFuck.getUserInfo());
                 logText.append("\n");
 
+                System.out.println(RunFuck.RunTime);
+
+                logText.append(RunFuck.getRunInfo(seconds,steps,longtitude,latitude));
+                logText.append("\n");
+
                 logText.append(("// 请求跑步信息:\n"));
                 if(!needSleep){
                     logText.append("不进行延时模拟\n");
@@ -252,8 +257,7 @@ public class WorkingFrame extends JFrame {
                     progressBar.setMinimum(0);
                     progressBar.setMaximum(Integer.parseInt(RunFuck.RunTime));
                 }
-                logText.append(RunFuck.getRunInfo(seconds,steps,longtitude,latitude));
-                logText.append("\n");
+
 
                 progressBar.setStringPainted(true);
 
@@ -268,6 +272,8 @@ public class WorkingFrame extends JFrame {
                 publish(curProgressData);
 
                 int waitTime=needSleep?Integer.parseInt(RunFuck.RunTime):2;
+
+                System.out.println("waittime="+waitTime);
 
                 for(int i = 1; i<waitTime; i++){
                     Thread.sleep(1000);
@@ -318,6 +324,7 @@ public class WorkingFrame extends JFrame {
         public void done(){
             StringBuilder result= null;
             completed=true;
+            System.out.println("Runtime="+RunFuck.RunTime);
             try {
                 result = get();
             } catch (InterruptedException | ExecutionException e) {
